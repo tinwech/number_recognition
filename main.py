@@ -15,7 +15,7 @@ win_name = 'handwritten digits recognizer'
 model = tf.keras.models.load_model('my_model')
 windows = []
 
-def windowEnumerationHandler(hwnd):
+def windowEnumerationHandler(hwnd, windows):
     windows.append((hwnd, win32gui.GetWindowText(hwnd)))
 
 def front():
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode([width, height])
     pygame.display.set_caption(win_name)
-    win32gui.EnumWindows(windowEnumerationHandler)
+    win32gui.EnumWindows(windowEnumerationHandler, windows)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
